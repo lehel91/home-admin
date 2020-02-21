@@ -1,14 +1,22 @@
 package hu.lmsystems.homeadmin;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-@RestController
+@Controller
 public class HomeAdminResource {
 
-	@GetMapping("/")
-	public String home() {
-		return("<h1>Welcome</h1>");
+	@RequestMapping("/")
+	public String home(Model model) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String currentPrincipalName = authentication.getName();
+		
+		model.addAttribute("name", currentPrincipalName);
+		return "welcome";
 	}
 	
 	@GetMapping("/admin")
@@ -17,7 +25,7 @@ public class HomeAdminResource {
 	}
 	
 	@GetMapping("/user") 
-	public String user() {
+	public String user() {	
 		return("<h1>Welcome User</h1>");
 	}
 }
