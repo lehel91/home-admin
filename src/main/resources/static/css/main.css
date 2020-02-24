@@ -5,4 +5,10 @@
 .welcome-card {
 	display: flex;
 	justify-content: center;
+	opacity: 0.5;
+	transition: 0.5s;
+}
+
+.welcome-card:hover {
+	opacity: 1;
 }
