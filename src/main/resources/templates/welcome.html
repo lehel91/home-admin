@@ -9,7 +9,11 @@
 <body>
 	<div class="container mt-4">
 		<div class="jumbotron welcome-card">
-    		<h2 class="hello-title" th:text="'Hello, ' + ${name} + '!'"></h2>
+    		<h2 class="hello-title" th:text="#{greeting(${name})}" />
+    		<th:block th:each="permission : ${permissions}">
+    			<h3 th:if="${permission == 'ROLE_ADMIN'}" th:text="#{permissions(#{admin-role})}"></h3>
+    			<h3 th:if="${permission == 'ROLE_USER'}" th:text="#{permissions(#{user-role})}"></h3>
+    		</th:block>
     	</div>
     </div>
     <script src="/js/main.js"></script>
