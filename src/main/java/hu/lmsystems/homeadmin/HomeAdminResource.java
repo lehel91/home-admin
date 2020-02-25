@@ -6,19 +6,15 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
-import hu.lmsystems.homeadmin.constants.HomeAdminConstants;
+import hu.lmsystems.homeadmin.model.HomeAdminUserDetails;
 
 @Controller
 public class HomeAdminResource {
@@ -31,7 +27,9 @@ public class HomeAdminResource {
 	@GetMapping("/")
 	public String home(Model model) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		HomeAdminUserDetails userObject = (HomeAdminUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String currentPrincipalName = authentication.getName();
+		
 		List<GrantedAuthority> authorities = (List<GrantedAuthority>) authentication.getAuthorities();		
 		List<String> permissions = new ArrayList<>();
 
@@ -39,7 +37,8 @@ public class HomeAdminResource {
 			permissions.add(authority.getAuthority());
 		}
 		
-		model.addAttribute("name", currentPrincipalName);
+		model.addAttribute("userName", currentPrincipalName);
+		model.addAttribute("firstName", userObject.getFirstName());
 		model.addAttribute("permissions", permissions);
 
 		return "welcome";
