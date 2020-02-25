@@ -2,14 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title th:text="'Hello, ' + ${name} + '!'"></title>
+    <title th:text="'Hello, ' + ${firstName} + '!'"></title>
     <link href="/css/main.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
 <body>
 	<div class="container mt-4">
 		<div class="jumbotron welcome-card">
-    		<h2 class="hello-title" th:text="#{greeting(${name})}" />
+    		<h2 class="hello-title" th:text="#{greeting(${firstName})}" />
     		<th:block th:each="permission : ${permissions}">
     			<span class="permission-info" th:if="${permission == 'ROLE_ADMIN'}" th:text="#{permissions(#{admin-role})}"></span>
     			<span class="permission-info" th:if="${permission == 'ROLE_USER'}" th:text="#{permissions(#{user-role})}"></span>
