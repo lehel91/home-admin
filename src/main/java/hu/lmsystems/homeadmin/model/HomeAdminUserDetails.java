@@ -12,12 +12,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class HomeAdminUserDetails implements UserDetails {
 
 	private String userName;
+	private String firstName;
+	private String lastName;
 	private String password;
 	private boolean active;
 	private List<GrantedAuthority> authorities;
 	
 	public HomeAdminUserDetails(User user) {
 		this.userName = user.getUserName();
+		this.firstName = user.getFirstName();
+		this.lastName = user.getLastName();
 		this.password = user.getPassword();
 		this.active = user.isActive();
 		this.authorities = Arrays.stream(user.getRoles().split(","))
@@ -38,6 +42,14 @@ public class HomeAdminUserDetails implements UserDetails {
 	@Override
 	public String getUsername() {
 		return userName;
+	}
+	
+	public String getFirstName() {
+		return firstName;
+	}
+	
+	public String getLastName() {
+		return lastName;
 	}
 
 	@Override
@@ -60,5 +72,5 @@ public class HomeAdminUserDetails implements UserDetails {
 		return active;
 	}
 	
-
+	
 }
