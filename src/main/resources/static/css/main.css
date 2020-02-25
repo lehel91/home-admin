@@ -1,0 +1,19 @@
+.hello-title { 
+    color: #007bff;
+}
+
+.welcome-card {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	opacity: 0.5;
+	transition: 0.5s;
+}
+
+.permission-info {
+	color: #2F4F4F;
+}
+
+.welcome-card:hover {
+	opacity: 1;
+}
