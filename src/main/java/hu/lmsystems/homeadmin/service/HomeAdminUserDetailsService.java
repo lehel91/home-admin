@@ -1,4 +1,4 @@
-package hu.lmsystems.homeadmin;
+package hu.lmsystems.homeadmin.service;
 
 import java.util.Optional;
 
@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import hu.lmsystems.homeadmin.dao.UserRepository;
 import hu.lmsystems.homeadmin.model.HomeAdminUserDetails;
 import hu.lmsystems.homeadmin.model.User;
 

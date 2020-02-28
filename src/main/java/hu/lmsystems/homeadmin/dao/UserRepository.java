@@ -1,4 +1,4 @@
-package hu.lmsystems.homeadmin;
+package hu.lmsystems.homeadmin.dao;
 
 import java.util.Optional;
 

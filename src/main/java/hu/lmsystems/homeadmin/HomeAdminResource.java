@@ -45,9 +45,9 @@ public class HomeAdminResource {
 
 	}
 
-	@GetMapping("/admin")
-	public String admin() {
-		return ("<h1>Welcome Admin</h1>");
+	@GetMapping("/shopping-list")
+	public String shoppingList() {
+		return "shopping-list";
 	}
 
 	@GetMapping("/user")
