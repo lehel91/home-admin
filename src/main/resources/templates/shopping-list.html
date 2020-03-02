@@ -3,48 +3,38 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>jQuery UI Autocomplete - Default functionality</title>
+  <title>Shopping list</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
   $( function() {
-    var availableTags = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
-    ];
-    $( "#tags" ).autocomplete({
-      source: availableTags
+    $( "#productsInput" ).autocomplete({
+    	source: function(request, response) {
+    	  $.ajax({
+    		  type: "GET",
+    		  url: "shopping-list/search",
+    		  data: {term: request.term},
+    		  contentType: "application/json; charset=utf-8",
+    		  dataType: "json",
+    		  success: function(data) {
+    			  response(data);
+    		  }
+    	  });
+      }
     });
-  } );
-  </script>
+  });
+</script>
 </head>
+
 <body>
- 
-<div class="ui-widget">
-  <label for="tags">Tags: </label>
-  <input id="tags">
+		
+<div class="ui-widget container mt-4">
+	<div class="jumbotron welcome-card">
+  		<label for="productsInput" th:text="#{products}"></label>
+  		<input id="productsInput" class="form-control">
+  	</div>
 </div>
  
  
