@@ -17,3 +17,12 @@
 .welcome-card:hover {
 	opacity: 1;
 }
+
+.delete-button {
+	border: none;
+	background-color: transparent;
+}
+
+.delete-icon {
+	color: red;
+}
