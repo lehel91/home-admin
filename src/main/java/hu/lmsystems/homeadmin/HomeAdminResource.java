@@ -14,12 +14,17 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import hu.lmsystems.homeadmin.model.HomeAdminUserDetails;
+import hu.lmsystems.homeadmin.model.Product;
 import hu.lmsystems.homeadmin.service.ProductService;
 
 @Controller
@@ -76,4 +81,15 @@ public class HomeAdminResource {
 		
 		return searchedProducts;
 	}
+	
+	@PostMapping("/register-product")
+	public Product saveNewProduct(@RequestParam("name") String name, BindingResult 
+			result) {
+		logger.info("***New Product Name:*** " + name);
+		Product product = new Product();
+		product.setName(name);
+		
+		return productService.save(product);
+	} 
+	
 }

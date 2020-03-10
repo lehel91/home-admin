@@ -14,6 +14,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	
 	List<Product> findAll();
 	
+	@SuppressWarnings("unchecked")
+	Product saveAndFlush(Product product);
+	
 	@Query(value = "SELECT name FROM products where name like %:keyword%", nativeQuery = true)
 	List<String> search(@Param("keyword") String keyword);
 }

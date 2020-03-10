@@ -26,7 +26,6 @@
     	  });
       	},
       	select: function(event, ui) {
-      		console.log(ui.item ? "Selected: " + ui.item.label : "Nothing selected, input was " + this.value);
       		var table = document.getElementById('selected-products-table');
       		var row = document.createElement('tr');
       		var cell1 = document.createElement('td');
@@ -50,20 +49,28 @@
 
 <body>
 		
-<div class="ui-widget container mt-4">
-	<div class="jumbotron search">
+<div class="jumbotron container mt-4">
+	<div class="search">
   		<label for="productsInput" th:text="#{products}"></label>
   		<input id="productsInput" class="form-control">
   	</div>
+  	
+  	<div class="selected-products">
+		<label for="selected-products-table" th:text="#{selected-products}"></label>
+		<table id="selected-products-table">
+		</table>
+	</div>
 </div>
 
 <div class="container mt-4">
-	<div class="jumbotron selected-products">
-		<label for="selected-products-table" th:text="#{selected-products}"></label>
-		<table id="selected-products-table">
-		
-		</table>
-	</div>
+	<div class="jumbotron">
+			<form action="register-product" method="post">
+				<label for="name" th:text="#{product-name}"></label>
+				<input type="text" name="name" class="form-control">
+				<input type ="submit" th:value="#{save}">
+			</form>
+
+		</div>
 </div>
  
  
